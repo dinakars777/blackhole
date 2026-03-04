@@ -2,7 +2,7 @@
 
 > A stunning, visually satisfying CLI tool to instantly scan your hard drive, locate heavy `node_modules` folders, and safely destroy them to reclaim gigabytes of disk space.
 
-![blackhole screenshot](./screenshot.png) *(Imagine a beautiful clack-based terminal here)*
+> *(A beautiful, interactive CLI built with `@clack/prompts`)*
 
 ## The Problem
 As developers, we spin up dozens of experimental projects. Each `npm install` brings in hundreds of megabytes of `node_modules`. Very quickly, your hard drive fills up with gigabytes of unused dependencies from projects you haven't touched in 8 months.
