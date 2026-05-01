@@ -10,11 +10,11 @@ You've spun up dozens of experimental projects. Each `npm install` brought in hu
 
 ## Features
 
-- ✨ Zero configuration — just aim it at a folder
-- 🚀 Blazing fast recursive scan powered by `fast-glob`
-- 📊 Calculates exact disk usage per folder
-- 🛡️ Interactive multi-select — you choose exactly what gets deleted
-- 🔥 Permanently wipes gigabytes in seconds
+- ✨ Zero config
+- 🚀 Fast recursive scan via `fast-glob`
+- 📊 Exact disk usage per folder
+- 🛡️ Interactive multi-select
+- 🔥 Wipes gigabytes in seconds
 
 ## Quick Start
 
