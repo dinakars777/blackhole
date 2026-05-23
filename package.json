@@ -3,12 +3,16 @@
   "version": "1.0.0",
   "description": "🕳️ A visually satisfying CLI tool to scan and destroy heavy, unused node_modules folders.",
   "main": "dist/index.js",
+  "files": [
+    "dist"
+  ],
   "bin": {
     "blackhole": "dist/index.js"
   },
   "scripts": {
     "build": "tsup src/index.ts --format cjs --clean",
     "dev": "ts-node src/index.ts",
+    "prepack": "npm run build",
     "test": "node --test --require ts-node/register test/core.test.ts",
     "start": "node dist/index.js"
   },
