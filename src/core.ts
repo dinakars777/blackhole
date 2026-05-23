@@ -35,21 +35,27 @@ export async function findNodeModules(baseDir: string): Promise<string[]> {
  */
 export function getDirectorySize(dirPath: string): number {
     let size = 0;
+    let files: fs.Dirent[];
 
     try {
-        const files = fs.readdirSync(dirPath, { withFileTypes: true });
+        files = fs.readdirSync(dirPath, { withFileTypes: true });
+    } catch (error) {
+        return 0;
+    }
 
-        for (const file of files) {
-            const fullPath = path.join(dirPath, file.name);
+    for (const file of files) {
+        const fullPath = path.join(dirPath, file.name);
+
+        try {
             if (file.isDirectory()) {
                 size += getDirectorySize(fullPath);
             } else {
                 const stats = fs.statSync(fullPath);
                 size += stats.size;
             }
+        } catch (error) {
+            // Keep scanning siblings when one nested file cannot be read.
         }
-    } catch (error) {
-        // Ignore permission errors on specific nested files
     }
 
     return size;
@@ -61,8 +67,8 @@ export function getDirectorySize(dirPath: string): number {
 export function formatBytes(bytes: number): string {
     if (bytes === 0) return '0 B';
     const k = 1024;
-    const sizes = ['B', 'KB', 'MB', 'GB'];
-    const i = Math.floor(Math.log(bytes) / Math.log(k));
+    const sizes = ['B', 'KB', 'MB', 'GB', 'TB', 'PB'];
+    const i = Math.min(Math.floor(Math.log(bytes) / Math.log(k)), sizes.length - 1);
     return parseFloat((bytes / Math.pow(k, i)).toFixed(2)) + ' ' + sizes[i];
 }
 
